@@ -33,7 +33,15 @@ class SearchController < ActionController::Base
             sleep 0.5
             next
           else
-            render json: JSON.parse(res.body)
+            render json: {
+                request_params: {
+                    name: params[:name],
+                    age: params[:age],
+                    phone: params[:phone],
+                    page: params[:page]
+                },
+                persons: JSON.parse(res.body)
+            }
             return
           end
         end
